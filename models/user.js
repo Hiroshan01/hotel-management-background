@@ -6,6 +6,10 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    password: {
+        type: String,
+        required: true
+    },
     firstName: {
         type: String,
         required: true
@@ -14,14 +18,31 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    profilePicture: {
-        type: String,
-        default: "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
+    type: {
+        type:String,
+        required:true,
+        default:"customer"
+       
     },
-    password: {
-        type: String,
-        required: true
+    whatsapp:{
+        type:String,
+        required:true
+    },
+    phone:{
+        type:String,
+        required:true
+    },
+    disable:{
+        type:Boolean,
+        equired:true,
+        default:false
+    },
+    emailVerified:{
+        type:Boolean,
+        equired:true,
+        default:false
     }
+   
 });
 
 // Save location collection name "Users is database name simple capital not problem"
