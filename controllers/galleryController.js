@@ -2,7 +2,17 @@ import GalleryItem from "../models/galleryItem.js"
 
 export function postGalleryItem(req, res){
 
-    const galleryItem=req.body
+    //authentication
+    const user=req.body.user
+    if(user==null){
+        res.status(403).json({
+            message:"Please login to create a gallery item"
+        })
+        return //end function
+    }
+    
+
+    const galleryItem=req.body.item
 
     const newGalleryItem=new GalleryItem(galleryItem)
     newGalleryItem.save().then(
