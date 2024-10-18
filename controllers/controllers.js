@@ -1,36 +1,13 @@
-import mongoose from "mongoose";
-
-const userSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    firstName: {
-        type: String,
-        required: true
-    },
-    lastName: {
-        type: String,
-        required: true
-    },
-    profilePicture: {
-        type: String,
-        default: "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
-    },
-    password: {
-        type: String,
-        required: true
-    }
-});
-
-// Save location collection name "Users is database name simple capital not problem"
-const User = mongoose.model("Users", userSchema);
+import User from "../models/user.js";
 
 export function getUsers(req, res) {
-    res.json({
-        message: "This is a GET request"
-    });
+   User.find().then(
+    (userList)=>{
+      res.json({
+        list:userList
+      })
+    }
+   )
 }
 
 export function postUsers(req, res) {
