@@ -1,28 +1,15 @@
 import express from 'express';
+import { deleteUsers, getUsers, postUsers, putUsers }  from '../controllers/controllers.js';
 
 const userRoutes = express.Router();
 
-userRoutes.get("/",(req,res)=>{
-    res.json({
-        message:"This is get request"
-    })
+userRoutes.get("/",getUsers)
 
-})
-userRoutes.post("/",(req,res)=>{
-    
-    res.json({
-        message:"This is post request"
-    })
-    
-})
-userRoutes.delete("/",(req,res)=>{
-    res.json({
-        message:"This is delete request"
-    })
-})
-userRoutes.put("/",(req,res)=>{
-    res.json({
-        message:"This is put request"
-    })
-})
+userRoutes.post("/",postUsers)
+
+userRoutes.put("/",putUsers)
+
+userRoutes.delete("/",deleteUsers)
+
+
 export default userRoutes
