@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const galleryItem=mongoose.Schema(
     {
         name:{
-            tyep:String,
+            type:String,
             required:true
         },
         image:{
@@ -17,5 +17,5 @@ const galleryItem=mongoose.Schema(
     }
 
 )
-const GalleryItem=mongoose.Schema("galleryItem",galleryItem)
+const GalleryItem=mongoose.model("galleryItem",galleryItem)
 export default GalleryItem;

@@ -1,14 +1,6 @@
 import User from "../models/user.js";
 
-export function getUsers(req, res) {
-   User.find().then(
-    (userList)=>{
-      res.json({
-        list:userList
-      })
-    }
-   )
-}
+
 
 export function postUsers(req, res) {
     const user = req.body;
@@ -28,15 +20,22 @@ export function postUsers(req, res) {
             });
         });
 }
-
-export function putUsers(req, res) {
-    res.json({
-        message: "This is a PUT request"
-    });
+//Authentication part
+export function loginUser(req,res){
+    const credential=req.body
+    User.findOne({email:credential.email, password:credential.password}).then(
+        (user)=>{
+          if(user==null){
+            res.stutus(404).json({
+               message:"User not found"
+            })
+          }else(
+            res.json({
+                message:"User Found",
+                user:user
+            })
+          )
+        }
+    )
 }
 
-export function deleteUsers(req, res) {
-    res.json({
-        message: "This is a DELETE request"
-    });
-}

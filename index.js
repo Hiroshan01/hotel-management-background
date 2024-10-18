@@ -2,13 +2,13 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import userRoutes from './routes/uersRousts.js';
 import mongoose from 'mongoose';
+import galleryItemRouter from './routes/galleryItemCreate.js';
 
 const app = express();
 
 app.use(bodyParser.json()) //bodypaerser middlware
 
-//routes
-app.use("/api/users", userRoutes)
+
 
 const connectionString="mongodb+srv://tester:123@project.rm6md.mongodb.net/?retryWrites=true&w=majority&appName=project"
 
@@ -21,6 +21,10 @@ mongoose.connect(connectionString).then(
         console.log("Connection Failed.")
     }
 )
+//routes
+app.use("/api/users", userRoutes)
+
+app.use("/api/gallery",galleryItemRouter)
 
 
 
