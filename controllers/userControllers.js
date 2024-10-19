@@ -1,6 +1,9 @@
 import User from "../models/user.js";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 // User registration
 export function postUsers(req, res) {
@@ -52,7 +55,7 @@ export function loginUser(req, res) {
             // Generate JWT token
             const token = jwt.sign(
                 { _id: user._id, email: user.email },  // Include only necessary fields
-                'secret',  // Secret should be stored in an environment variable
+                process.env.JWK_KEY,  // Secret should be stored in an environment variable
                 { expiresIn: '1h' }  // Set token expiration time
             );
 

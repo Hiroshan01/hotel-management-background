@@ -4,6 +4,9 @@ import userRoutes from './routes/uersRousts.js' // Ensure the correct file name
 import mongoose from 'mongoose';
 import galleryItemRouter from './routes/galleryItemCreate.js';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const app = express();
 
@@ -11,7 +14,7 @@ const app = express();
 app.use(bodyParser.json()); // Body parser middleware
 
 // MongoDB connection string
-const connectionString = "mongodb+srv://tester:123@project.rm6md.mongodb.net/?retryWrites=true&w=majority&appName=project";
+const connectionString = process.env.MOMGO_URL
 
 // Authentication middleware
 app.use((req,res,next)=>{
@@ -19,7 +22,7 @@ app.use((req,res,next)=>{
     const token = req.header("Authorization")?.replace("Bearer ", "")
   
     if(token != null){
-      jwt.verify(token,"secret",
+      jwt.verify(token,process.env.JWK_KEY,
         (err,decoded)=>{
         if(decoded != null){
           req.user = decoded
