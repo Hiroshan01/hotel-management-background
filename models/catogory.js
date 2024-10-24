@@ -12,7 +12,7 @@ const categorySchema = mongoose.Schema({
   },
   features : [
     {
-      type:String,
+      type:String
     }
   ],
   description : {

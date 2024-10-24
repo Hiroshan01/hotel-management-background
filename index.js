@@ -3,7 +3,7 @@ import express from 'express';
 import userRoutes from './routes/uersRousts.js' // Ensure the correct file name
 import mongoose from 'mongoose';
 import galleryItemRouter from './routes/galleryItemCreate.js';
-import jwt from 'jsonwebtoken';
+import jwt, { decode } from 'jsonwebtoken';
 import dotenv from 'dotenv'
 import CategoryRouter from './routes/categoryRouts.js';
 
@@ -23,13 +23,12 @@ app.use((req,res,next)=>{
   const token = req.header("Authorization")?.replace("Bearer ", "")
 
   if(token != null){
-    jwt.verify(token,process.env.JWT_KEY,
-      (err,decoded)=>{
-      if(decoded != null){
-        req.user = decoded
-        next()
-      }else{
-        next()
+    jwt.verify(token, process.env.JWK_KEY, (err, decoded) => {
+      if (decoded != null) {
+          req.user = decoded;
+          next();
+      } else {
+          next(); 
       }
     }
   )
@@ -51,7 +50,7 @@ mongoose.connect(connectionString)
 // Routes
 app.use("/api/users", userRoutes);
 app.use("/api/gallery", galleryItemRouter);
-app.use("/api/category",CategoryRouter)
+app.use("/api/category",CategoryRouter);
 
 // Start the server
 app.listen(5000, () => {

@@ -54,10 +54,13 @@ export function loginUser(req, res) {
 
             // Generate JWT token
             const token = jwt.sign(
-                { _id: user._id, email: user.email },  // Include only necessary fields
-                process.env.JWK_KEY,  // Secret should be stored in an environment variable
-                { expiresIn: '1h' }  // Set token expiration time
+                { _id: user._id, 
+                email: user.email, 
+                type: user.type },// Include user type in token payload
+                process.env.JWK_KEY,  // Secret key for signing the token
+                { expiresIn: '1h' }
             );
+            
 
             // Send response with token and user data
             return res.json({
