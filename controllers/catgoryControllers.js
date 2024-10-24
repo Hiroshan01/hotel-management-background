@@ -101,3 +101,72 @@ Catogory.findOneAndDelete({name:name}).then(
       });
   });
   }
+  export function getCategoryByName(req,res){
+    const name=req.params.name
+    Category.findOne({name:name}).then(
+      (result)=>{
+        if(result==null){
+          res.json(
+            {
+              message:"Category not found"
+            }
+          )
+        }else{
+          res.json(
+            {
+              category:result
+            }
+          )
+        }
+      }
+    ).catch(
+      ()=>{
+        res.json(
+          {
+           message:"failed to get catgory"
+          }
+          
+        )
+      }
+    )
+  }
+export function updateCategory(req,res){
+
+ // const adminValid=isAdminValid(req)
+  if(!isAdminValid){
+    res.status(403).json({
+      message: "Unauthorized"
+    });
+    return
+  }
+  const name=req.params.name;
+
+  Category.updateOne({name:name},req.body).then(
+    ()=>{
+      res.json({
+        message:"Category updated sucessfully"
+      })
+    }
+  ).catch(
+    ()=>{
+      res.json({
+        message:"Failed to upate category"
+      })
+    }
+  )
+}
+
+
+function isAdminValid(req){
+  if (req.user == null) {
+  
+    return false
+  }
+
+  if (req.user.type != "admin") {
+   
+    return true
+  }
+  return false
+}
+
