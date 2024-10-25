@@ -126,3 +126,28 @@ export function updateRoom(req,res){
      }
    )
  }
+ //find category
+
+ export function getRoomByCaregory(req,res){
+      const category=req.params.category
+
+      Room.find({category:category}).then(
+        (result)=>{
+          res.json(
+            {
+              rooms:result
+            }
+          )
+        }
+      ).catch(
+        ()=>{
+         res.json(
+          {
+            message:"Failed to get name"
+          }
+         ) 
+        }
+      )
+
+
+ }
