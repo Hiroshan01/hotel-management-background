@@ -52,7 +52,7 @@ mongoose.connect(connectionString)
 app.use("/api/users", userRoutes);
 app.use("/api/gallery", galleryItemRouter);
 app.use("/api/category",CategoryRouter);
-app.use("api/rooms",roomRouter)
+app.use("/api/room",roomRouter)
 
 // Start the server
 app.listen(5000, () => {

@@ -5,7 +5,7 @@ import {isAdminValid} from "../controllers/userControllers.js"
 export function createRoom(req,res){
       
     // const adminValid=isAdminValid(req)
-  if(!isAdminValid){
+  if(! isAdminValid){
     res.status(403).json({
       message: "Unauthorized"
     });
@@ -31,7 +31,7 @@ export function createRoom(req,res){
 }
   //delete rooms
   
-  export function deleteRooms(req, res) {
+  export function deleteRoom(req, res) {
    
     if(!isAdminValid){
         res.status(403).json({
