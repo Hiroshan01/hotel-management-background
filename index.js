@@ -7,6 +7,7 @@ import jwt, { decode } from 'jsonwebtoken';
 import dotenv from 'dotenv'
 import CategoryRouter from './routes/categoryRouts.js';
 import roomRouter from './routes/roomRoutes.js';
+import bookingRouter from './routes/bookingRouts.js';
 
 dotenv.config()
 
@@ -52,7 +53,8 @@ mongoose.connect(connectionString)
 app.use("/api/users", userRoutes);
 app.use("/api/gallery", galleryItemRouter);
 app.use("/api/category",CategoryRouter);
-app.use("/api/room",roomRouter)
+app.use("/api/room",roomRouter);
+app.use("/api/booking",bookingRouter);
 
 // Start the server
 app.listen(5000, () => {

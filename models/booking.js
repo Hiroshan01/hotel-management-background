@@ -1,47 +1,46 @@
 import mongoose from "mongoose";
 
-const bookingSchema=new mongoose({
-
-    bookingId:{
-        type:Number,
-        required:true,
-        unique:true
+const bookingSchema = new mongoose.Schema({
+    bookingId: {
+        type: Number,
+        required: true,
+        unique: true
     },
-    roomId:{
-        type:Number,
-        required:true,
-
+    roomId: {
+        type: Number,
+        required: true
     },
-    email:{
-        type:String,
-        required:true
+    email: {
+        type: String,
+        required: true
     },
-    status:{
-        type:String,
-        required:true,
-        default:"pending"
+    status: {
+        type: String,
+        required: true,
+        default: "pending"
     },
-    reason:{
-        type:String,
-        required:true,
-        default:" "
+    reason: {
+        type: String,
+        required: true,
+        default: " "
     },
-    start:{
-        type:Date,
-        required:true,
+    start: {
+        type: Date,
+        required: true
     },
-    end :{
-        type:Date,
-        required:true,
+    end: {
+        type: Date,
+        required: true
     },
-    note:{
-        type:String,
-        required:true
+    note: {
+        type: String,
+        required: true
     },
-    timestamp:{
-        type:Date,
-        default:Date.now
+    timestamp: {
+        type: Date,
+        default: Date.now
     }
-})
- const Booking=mongoose.model("Booking",bookingSchema)
- export default Booking;
+});
+
+const Booking = mongoose.model("Booking", bookingSchema);
+export default Booking;
