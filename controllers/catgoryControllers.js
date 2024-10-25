@@ -1,6 +1,6 @@
 import Category from "../models/catogory.js";
 import Catogory from "../models/catogory.js";
-
+import {isAdminValid} from "./userControllers.js"
 export function createCatogory(req, res) {
    
 
@@ -157,16 +157,5 @@ export function updateCategory(req,res){
 }
 
 
-function isAdminValid(req){
-  if (req.user == null) {
-  
-    return false
-  }
 
-  if (req.user.type != "admin") {
-   
-    return true
-  }
-  return false
-}
 
