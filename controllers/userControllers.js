@@ -88,3 +88,14 @@ export function isAdminValid(req){
     }
     return false
   }
+
+  //Boocking can be put only log users
+export function isCustomerValid(req){
+    if(req.user ==null){
+        return false
+    }
+    if (req.user.type !="customer"){
+        return false
+    }
+    return true;
+}
