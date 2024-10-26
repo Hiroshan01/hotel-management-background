@@ -8,10 +8,15 @@ import dotenv from 'dotenv'
 import CategoryRouter from './routes/categoryRouts.js';
 import roomRouter from './routes/roomRoutes.js';
 import bookingRouter from './routes/bookingRouts.js';
+import cors from 'cors';
+
+
 
 dotenv.config()
 
 const app = express();
+
+app.use(cors())
 
 // Middleware to parse JSON requests
 app.use(bodyParser.json()); // Body parser middleware
