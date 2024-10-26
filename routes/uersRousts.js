@@ -1,5 +1,5 @@
 import express from 'express';
-import { loginUser, postUsers } from '../controllers/userControllers.js'; // Ensure this path is correct
+import { getUser, loginUser, postUsers } from '../controllers/userControllers.js'; // Ensure this path is correct
 
 const userRoutes = express.Router();
 
@@ -8,5 +8,7 @@ userRoutes.post("/", postUsers);
 
 // Route to log in a user
 userRoutes.post("/login", loginUser);
+
+userRoutes.get("/",getUser)
 
 export default userRoutes;
